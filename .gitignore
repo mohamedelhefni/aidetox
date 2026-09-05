@@ -1,0 +1,13 @@
+# Go build and coverage output
+bin/
+coverage.out
+*.prof
+
+# Local editor and OS files
+.DS_Store
+.idea/
+.vscode/
+
+# Mini Redis runtime data
+*.wal
+
