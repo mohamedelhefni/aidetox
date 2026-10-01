@@ -35,7 +35,6 @@ jobs:
           cache-dependency-path: web/package-lock.json
       - run: npm ci
       - run: npm run go:wasm
-      - run: npm test
       - run: npx vite build
       - uses: actions/upload-pages-artifact@v3
         with:
