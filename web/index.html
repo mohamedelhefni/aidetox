@@ -18,6 +18,17 @@
     <a href="#/profile">Profile</a>
   </nav>
   <main id="main"></main>
+  <script src="https://siraaj.live/sdk/analytics.min.js"></script>
+  <script>
+    const analytics = SiraajAnalytics.analytics || SiraajAnalytics.default;
+    analytics.init({
+      apiUrl: 'https://siraaj.live',
+      projectId: 'aidetox',
+      autoTrack: true,
+      trackingToken: 'siraaj_trk_YsrWnsNovNjRjZbSAVUOruT-P_A86Cfjek1a5SL8wI8'
+    });
+    analytics.pageView();
+  </script>
   <script type="module" src="/src/main.js"></script>
 </body>
 </html>
