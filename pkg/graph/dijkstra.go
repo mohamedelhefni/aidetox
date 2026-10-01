@@ -1,3 +1,5 @@
 package graph
 
-// Day 13: implement shortest path using the graph and your priority queue.
+func (g *Graph[T]) ShortestPath(source, destination T) (int, []T, bool) {
+	panic("TODO")
+}

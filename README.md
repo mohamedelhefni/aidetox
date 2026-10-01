@@ -1,6 +1,6 @@
 # 30-Day Go Rebuild Challenge
 
-A six-week program with 30 coding days and two rest days per week. This repository is intentionally a scaffold: the implementation and tests are yours to write.
+A six-week program with 30 coding days and two rest days per week. Every challenge has a concrete starter API whose bodies panic with `TODO` and an executable acceptance suite covering its required behavior. The implementation remains yours to write.
 
 ## Daily loop
 
@@ -10,7 +10,16 @@ A six-week program with 30 coding days and two rest days per week. This reposito
 4. Write and run your own tests (20–30 min).
 5. Review other implementations only after your attempt (10–20 min).
 
-Use AI for explanations, hints, edge-case prompts, and post-implementation review—not for solutions or tests. Investigate meaningful bugs for 30 minutes before asking for diagnosis.
+Use AI for explanations, hints, this supplied acceptance suite, and post-implementation review—not for implementation solutions. Investigate meaningful bugs for 30 minutes before asking for diagnosis.
+
+## Starting a day
+
+1. Open the day's brief and source file.
+2. Add fields to the provided empty type; keep or deliberately revise the starter API.
+3. Run that package's tests and use the first failure as your target.
+4. Implement until it passes, then continue to the next failure.
+
+Day 1 keeps your existing implementation and tests. Add a focused regression test only when you discover a case the acceptance suite does not cover.
 
 ## Schedule and files
 
@@ -57,3 +66,29 @@ go test -bench=. -benchmem ./...
 
 Copy the entry in [`docs/DAY_TEMPLATE.md`](docs/DAY_TEMPLATE.md) into [`PROGRESS.md`](PROGRESS.md) after each coding day.
 
+## aidetox website
+
+`web/` is a static site for practising without AI:
+
+- **Build from scratch:** 25 of the 30 days run in the browser in JavaScript, TypeScript, Python (Pyodide), Go (Yaegi on WASM) or C++ (clang on WASM). Days 5, 16, 17, 19 and 29 (benchmarks, goroutines, sockets) are Go-only and use this repo's tests. The in-browser versions of the later days inject the clock and use byte arrays in place of files, so they're deterministic.
+- **Engineer's toolkit:** 15 more problems in all five languages: FNV-1a hashing, Bloom filter, count-min sketch, HyperLogLog, consistent hashing, skip list, LFU cache, Fenwick tree, segment tree, transactional KV store, circuit breaker, timing wheel, regex engine (Thompson NFA), line diff and a UTF-8 codec.
+- **Grind 75:** links to LeetCode, and you mark each one done.
+- **Landing page:** the plan, your stats and a heatmap. Progress is stored in the browser, with export and import.
+
+```bash
+cd web && npm install
+npm run go:wasm     # build the Go interpreter (public/yaegi.wasm) once
+npm run dev         # http://localhost:5173
+npm test            # checks test data and the JS/Python/C++/Go harnesses
+npm run build       # web/dist
+```
+
+To run the Go-only days from the site, build it, then start the local runner from the repo root:
+
+```bash
+go run ./cmd/aidetox   # serves web/dist and runs `go test` for Go-only days
+```
+
+The `pages` workflow deploys `web/dist` to GitHub Pages. Pages allows files up to 100 MB; the Go engine is about 38 MB. The Python and C++ engines load from jsDelivr, so they aren't bundled.
+
+The problems live in `web/src/specs.js` (build from scratch) and `web/src/toolkit.js`. Each one is language-neutral: an API signature plus call-sequence tests, which `web/src/langs.js` turns into a starter and a harness for every language.

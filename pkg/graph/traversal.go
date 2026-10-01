@@ -1,3 +1,5 @@
 package graph
 
-// Day 12: implement BFS, DFS, and PathExists using the Day 11 graph.
+func (g *Graph[T]) BFS(start T) ([]T, bool)    { panic("TODO") }
+func (g *Graph[T]) DFS(start T) ([]T, bool)    { panic("TODO") }
+func (g *Graph[T]) PathExists(from, to T) bool { panic("TODO") }

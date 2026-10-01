@@ -5,6 +5,5 @@
 - Before implementation, conceptual explanations, diagrams, documentation, and complexity analysis are allowed.
 - Pseudocode is allowed for procedure-heavy algorithms such as BFS, DFS, Dijkstra, and topological sort.
 - Do not read Go implementations before making your own attempt.
-- Write your own tests and debug your own work first.
+- Use the supplied acceptance tests and debug your own work first. Add a focused regression test when you discover a missing behavior or reproduce a bug.
 - After your attempt, compare designs and request review without immediately replacing your solution.
-

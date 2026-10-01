@@ -1,0 +1,6 @@
+node_modules/
+dist/
+# built by `npm run go:wasm`
+public/yaegi.wasm*
+public/wasm_exec.js
+pnpm-lock.yaml
