@@ -22,7 +22,12 @@ export const progress = {
   record(id, lang, passed) {
     // ponytail: capped log, 10k attempts is years of daily practice.
     state.attempts = [...state.attempts, { id, lang, ts: Date.now(), passed }].slice(-10_000);
-    if (passed && !state.solved[id]) state.solved[id] = { lang, ts: Date.now() };
+    if (passed && !state.solved[id]) {
+      state.solved[id] = { lang, ts: Date.now() };
+      // Siraaj loads from index.html; surveys can trigger on this event. Absent in tests/blocked → no-op.
+      const sj = globalThis.SiraajAnalytics;
+      (sj?.analytics || sj?.default)?.track('challenge_solved', { problem: id, lang, solved: Object.keys(state.solved).length });
+    }
     save();
   },
   unmark(id) { delete state.solved[id]; save(); },
